@@ -1,0 +1,36 @@
+
+
+
+Rules:
+1. Do not go out of the parameters of the University. Something scary will happen if you do
+2. Some rooms have monsters in them. if you encounter a monster, you will have to get out of the room by exiting the way you came in.
+Or else, the monster will take away your inventory. Thus, you will have to remember which way you entered the room from. 
+3. 
+
+-MISSION-
+Collect the ___, ___, and ___ and drop them in the magic portal. The items are scattered throughout the University. The portal is somewhere mysterious.
+
+
+
+Enter the portal with no items
+"You entered the portal without having only the __, __, and __. 
+The portal has put you in a random room."
+
+Enter the portal with all items
+"
+
+if you drop 3 specific items into the portal you win
+hint about where to get the item
+if you go outside the parameters of the university one of the the things in your inventory disappears
+- you "lose" the item
+- the lost item gets relocated to a random room
+
+EXIT UNIVERSITY PARAMETERS
+You have just exited the parameters of the university.
+
+The university was on a plateau the exact shape of the university in the middle of the ocean!
+You are falling into the dark, cold ocean. 
+option: next
+You climb your way back up. However, you realize that when you fell into the water, your backpack
+opened and you lost your ___. You are also soaking wet and tired. You only have the energy left to enter 10 more rooms.
+option: go back in
