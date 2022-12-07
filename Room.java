@@ -1,7 +1,8 @@
+package Zuul;
 import java.util.Set;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
-
 /*
  * Class Room - a room in an adventure game.
  *
@@ -15,11 +16,13 @@ import java.util.Iterator;
  * @author  Michael Kolling and David J. Barnes
  * @version 1.0 (February 2002)
  */
+import java.util.Random;
 
 class Room 
 {
     private String description;
     private HashMap exits;        // stores exits of this room.
+    ArrayList<Item> items = new ArrayList<Item>();	
 
     /**
      * Create a room described "description". Initially, it has no exits.
@@ -35,6 +38,18 @@ class Room
     /**
      * Define an exit from this room.
      */
+    public Item randomItem() {//GET RANDOM ITEM
+    	Item item;
+        //gather 3 random items 
+        //make a list of all the items possible
+        //number of items possible: 10
+//ArrayList<Item> items = new ArrayList<Item>();	
+        Random rand = new Random();
+        int index = rand.nextInt(10);
+        item = items.get(index);
+        return item;
+    }
+    
     public void setExit(String direction, Room neighbor) 
     {
         exits.put(direction, neighbor);
@@ -69,6 +84,8 @@ class Room
         Set keys = exits.keySet();
         for(Iterator iter = keys.iterator(); iter.hasNext(); )
             returnString += " " + iter.next();
+        returnString += "\nItems in the room: \n";
+        returnString +=getRoomItems();
         return returnString;
     }
 
@@ -79,6 +96,51 @@ class Room
     public Room getExit(String direction) 
     {
         return (Room)exits.get(direction);
+    }
+    
+    
+    
+    
+    
+    //get items from the room
+    public Item getItem(int index) {
+    	return items.get(index);
+    }
+  
+  //get items from the room
+    public Item getItem(String itemName) {
+    	for (int i = 0; i < items.size(); i++) {
+    		if (items.get(i).getDescription().equals(itemName)) {
+    			return items.get(i);
+    		}
+    	}
+    	return null;
+    }
+    
+  //remove items from the room
+    public void removeItem(String itemName) {
+    	for (int i = 0; i < items.size(); i++) {
+    		if (items.get(i).getDescription().equals(itemName)) {
+    			items.remove(i);
+    		}
+    	}
+
+    }
+    
+    
+    
+    //set a particular item in the room
+    public void setItem(Item newitem) {
+    	items.add(newitem);
+    }
+    
+    //get a description of the items in a room
+    public String getRoomItems() {
+    	String output = "";
+		for (int i = 0; i < items.size(); i++) {
+			output += items.get(i).getDescription() + " ";
+		}
+		return output;
     }
 }
 
