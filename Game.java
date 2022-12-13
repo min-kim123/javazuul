@@ -206,6 +206,7 @@ class Game {
         else if (commandWord.equals("drop")) {
         	dropItem(command);
         }
+       
         return wantToQuit;
     }
     
@@ -283,7 +284,9 @@ class Game {
     private void goRoom(Command command) 
     {
     	boolean empty = inventory.isEmpty();
-    	int count = 3;
+
+    	boolean x = false;
+    	int count = 0;
         if(!command.hasSecondWord()) {
             // if there is no second word, we don't know where to go...
             System.out.println("Go where?");
@@ -298,7 +301,7 @@ class Game {
         	System.out.println("There is no door!");
         }
         else if (nextRoom == portal) {
-        	for (int i = 0; i < 3; ++i) {
+        	for (int i = 0; i < inventory.size(); ++i) {
         		//if the inventory.get(i).description == "Grass"
         		if (inventory.get(i).description == "Grass") {
         			count+=1;
@@ -311,16 +314,22 @@ class Game {
         		}
         	}
         	if (count == 3) {//all 3 items are in the inventory
+        		System.out.println("d");
         		currentRoom = nextRoom;
-                System.out.println(currentRoom.getLongDescription());
-        		System.out.println("You have entered the portal. Drop your inventory.");
-        		if (empty) {
-        			System.out.println("You win!");
+        		while(inventory.size()!=0) {
+        			System.out.println("Drop your inventory");
+        			Command com = parser.getCommand();
+                    x = processCommand(com);
+                    System.out.println("Inventory size: " + inventory.size());
+        		}
+        		if (inventory.size()==0) {
+        			System.out.println("You escaped the university!");
+        			System.exit(0);
         		}
         	}
         	else {//all 3 are not in the inventory
         		System.out.println("You tried to enter the portal without the Book, Grass, and Eyeball in your inventory.");
-        		System.out.println("The portal has transported you outside.");
+        		System.out.println("The portal has transported you outside the main entrance of the university.");
         		currentRoom = outside;
         	}
         }
